@@ -78,14 +78,22 @@ while(fechaPrimeraCita != "28-09-2021"):
     print(f"Consulta {contador}, {fechaPrimeraCita}")
     contador += 1
     time.sleep(3)
-        
-        
+
+try:        
+    hora = driver.find_element_by_id("asignarCitaForm:citasDisponibles:0:_id61").text
+except:
+    hora = ""
+    
 seleccionarCita = driver.find_element_by_id("asignarCitaForm:citasDisponibles:0")
 driver.implicitly_wait(10)
 ActionChains(driver).move_to_element(seleccionarCita).click(seleccionarCita).perform()
 
 asignarBtn = driver.find_element_by_id("asignarCitaForm:cmdaceptar")
 asignarBtn.click()
-print("Cita Asignada")
+time.sleep(1)
 
-driver.close()
+aceptarBtn = driver.find_element_by_id("asignarCitaForm:_id90")
+aceptarBtn.click()
+print(f"Cita Asignada, el día {fechaPrimeraCita}, a las {hora}")
+
+#driver.close()
