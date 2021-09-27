@@ -9,11 +9,12 @@ def selector(indice, elemento):
     elm = Select(elm)
     elm.select_by_index(indice)
 
-driver = webdriver.Firefox()
-
-driver.get("https://enlinea.famisanar.com.co/Portal/home.jspx")
-
 with open("secure.json") as json_file:
+    #export PATH=$PATH:/opt/WebDriver/bin >> ~/.profile
+    driver = webdriver.Firefox()
+
+    driver.get("https://enlinea.famisanar.com.co/Portal/home.jspx")
+
     data = json.load(json_file)
     cc = data['p'][0]['user']
     cl = data['p'][0]['pass']
