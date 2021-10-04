@@ -53,12 +53,12 @@ solicitarBtn = driver.find_element_by_name("generarReporteAutorizacionesXAfiliad
 solicitarBtn.click()
 
 # Formulario
-selector(3, "especialidad")
-selector(3, "consultaPor")
+selector(1, "especialidad") # 1 -> Odontologia 3 -> Medicina general
+selector(3, "consultaPor") # 3 -> Por centro de salud
 time.sleep(2)
 
 selector(17, "centrosMed")
-selector(2, "jornada")
+selector(3, "jornada") # 1 -> Cualquiera 2 -> AM 3 -> PM
 
 btnConsultar = driver.find_element_by_id("asignarCitaForm:cmdAceptar")
 btnConsultar.click()
@@ -68,8 +68,9 @@ fechaPrimeraCita = driver.find_element_by_id("asignarCitaForm:citasDisponibles:0
 
 
 contador = 0
-while(fechaPrimeraCita != "28-09-2021"):
-    time.sleep(3)
+fechas = ["04-10-2021", "05-10-2021", "06-10-2021", "07-10-2021", "08-10-2021" "09-10-2021"]
+while(fechaPrimeraCita not in fechas):
+    time.sleep(4)
     btnConsultarNew = driver.find_element_by_id("asignarCitaForm:cmdAceptar")
     btnConsultarNew.click()
     try:
