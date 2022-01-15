@@ -13,6 +13,7 @@ def selector(indice, elemento):
 driver = webdriver.Firefox()
 
 driver.get("https://enlinea.famisanar.com.co/Portal/home.jspx")
+time.sleep(3)
 
 with open("secure.json") as json_file:
     data = json.load(json_file)
@@ -40,12 +41,13 @@ time.sleep(1)
 
 paciente = driver.find_element_by_id("ifAuto")
 innerPage = paciente.get_attribute('src')
-driver.get(innerPage)
+driver.get(innerPage)   
 
 time.sleep(1)
 # Probablemente el elemento se hacia unclickeable desde la página por lo cual con el ActionChains, me permite
 # hacer click sobre él directamente 
-paciente2 = driver.find_element_by_id("generarReporteAutorizacionesXAfiliadoForm:resumenDataTable:1") # 0, para citas de mamá
+paciente2 = driver.find_element_by_id("generarReporteAutorizacionesXAfiliadoForm:resumenDataTable:0") 
+# 0, para citas de mamá
 driver.implicitly_wait(10)
 ActionChains(driver).move_to_element(paciente2).click(paciente2).perform()
 
@@ -53,12 +55,12 @@ solicitarBtn = driver.find_element_by_name("generarReporteAutorizacionesXAfiliad
 solicitarBtn.click()
 
 # Formulario
-selector(1, "especialidad") # 1 -> Odontologia 3 -> Medicina general
+selector(3, "especialidad") # 1 -> Odontologia 3 -> Medicina general
 selector(3, "consultaPor") # 3 -> Por centro de salud
 time.sleep(2)
 
-selector(17, "centrosMed")
-selector(3, "jornada") # 1 -> Cualquiera 2 -> AM 3 -> PM
+selector(16, "centrosMed")
+selector(1, "jornada") # 1 -> Cualquiera 2 -> AM 3 -> PM
 
 btnConsultar = driver.find_element_by_id("asignarCitaForm:cmdAceptar")
 btnConsultar.click()
@@ -68,7 +70,7 @@ fechaPrimeraCita = driver.find_element_by_id("asignarCitaForm:citasDisponibles:0
 
 
 contador = 0
-fechas = ["04-10-2021", "05-10-2021", "06-10-2021", "07-10-2021", "08-10-2021" "09-10-2021"]
+fechas = ["17-01-2022", "18-01-2022", "19-01-2022", "20-01-2022" ]
 while(fechaPrimeraCita not in fechas):
     time.sleep(4)
     btnConsultarNew = driver.find_element_by_id("asignarCitaForm:cmdAceptar")
