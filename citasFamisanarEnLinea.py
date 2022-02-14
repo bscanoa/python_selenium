@@ -10,7 +10,7 @@ def selector(indice, elemento):
     elm.select_by_index(indice)
 
 #export PATH=$PATH:/opt/WebDriver/bin >> ~/.profile
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 
 driver.get("https://enlinea.famisanar.com.co/Portal/home.jspx")
 time.sleep(3)
@@ -46,7 +46,7 @@ driver.get(innerPage)
 time.sleep(1)
 # Probablemente el elemento se hacia unclickeable desde la página por lo cual con el ActionChains, me permite
 # hacer click sobre él directamente 
-paciente2 = driver.find_element_by_id("generarReporteAutorizacionesXAfiliadoForm:resumenDataTable:0") 
+paciente2 = driver.find_element_by_id("generarReporteAutorizacionesXAfiliadoForm:resumenDataTable:1") 
 # 0, para citas de mamá
 driver.implicitly_wait(10)
 ActionChains(driver).move_to_element(paciente2).click(paciente2).perform()
@@ -70,7 +70,7 @@ fechaPrimeraCita = driver.find_element_by_id("asignarCitaForm:citasDisponibles:0
 
 
 contador = 0
-fechas = ["17-01-2022", "18-01-2022", "19-01-2022", "20-01-2022" ]
+fechas = ["17-01-2022", "19-01-2022", "20-01-2022" ]
 while(fechaPrimeraCita not in fechas):
     time.sleep(4)
     btnConsultarNew = driver.find_element_by_id("asignarCitaForm:cmdAceptar")
